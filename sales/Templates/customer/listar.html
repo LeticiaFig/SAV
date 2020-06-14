@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-title">
+        Lista de Clientes
+        <div class="heading-elements">
+            <a href="{% url 'register_customer' %}">Cadastrar Novo</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Referência</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            {% for customer in customers %}
+            <tr>
+                <td>{{customer}}</td>
+                <td>{{customer.customer_reference}}</td>
+                <td>
+                    <a href="{% url 'update_customer' pk=customer.pk %}" class="btn-action btn-edit" title="Editar Cliente">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn-action btn-details" title="Detalhes">
+                        <i class="far fa-clipboard"></i>
+                    </a>
+                    <a href="{% url 'delete_customer' pk=customer.pk %}" class="btn-action btn-delete" title="Excluir Cliente">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum cliente cadastrado!</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

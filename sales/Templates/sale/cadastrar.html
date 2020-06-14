@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-title">
+        {% if sale is empty %}
+           Nova Venda
+        {% else %}
+           Editar venda
+        {% endif %}
+    </div>
+    
+    <div class="card-body">
+
+        {% if sale is empty %}
+            <form class="forms-sample" action="{% url 'register_sale' %}" method="POST">
+        {% else %}
+           <form class="forms-sample" action="{% url 'update_sale' pk=customer.pk %}" method="POST">
+        {% endif %}
+
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{field.label_tag }}
+                    {{field }}
+                    <div>{{form.field.errors.error}}</div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+            <button class="btn btn-light">Cancelar</button>
+          </form>
+    </div>
+</div>
+
+{% endblock %}

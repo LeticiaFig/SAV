@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-title">
+        {% if customer is empty %}
+            Novo Cliente
+        {% else %}
+           Editar cliente
+        {% endif %}
+    </div>
+    
+    <div class="card-body">
+
+        {% if customer is empty %}
+            <form class="forms-sample" action="{% url 'register_customer' %}" method="POST">
+        {% else %}
+           <form class="forms-sample" action="{% url 'update_customer' pk=customer.pk %}" method="POST">
+        {% endif %}
+
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{field.label_tag }}
+                    {{field }}
+                    <div>{{form.field.errors.error}}</div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+            <button class="btn btn-light">Cancelar</button>
+          </form>
+    </div>
+</div>
+
+{% endblock %}

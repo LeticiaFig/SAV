@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-title">
+        Lista de Vendas
+        <div class="heading-elements">
+            <a href="{% url 'register_sale' %}">Cadastrar Nova</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Referência</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            {% for sale in sales %}
+            <tr>
+                <td>{{sale.customer}}</td>
+                <td>{{sale.customer.customer_reference}}</td>
+                <td>{{sale.value}}</td>
+                <td>{{sale.pub_date|date:"d/m/Y"}}</td>
+                <td>
+                    <a href="{% url 'update_sale' pk=sale.pk %}" class="btn-action btn-edit" title="Editar Venda">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a href="#" class="btn-action btn-details" title="Detalhes">
+                        <i class="far fa-clipboard"></i>
+                    </a>
+                    <a href="{% url 'delete_sale' pk=sale.pk %}" class="btn-action btn-delete" title="Excluir Venda">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhuma venda cadastrada!</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}
