@@ -1,1 +1,1 @@
-web: gunicorn sav.wsgi
+web: gunicorn sav-figueiredo.wsgi
