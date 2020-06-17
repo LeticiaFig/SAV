@@ -25,7 +25,7 @@ class RegisterCustomerForm(forms.ModelForm):
 
 
 class RegisterSaleForm(forms.ModelForm):
-    pub_date = forms.DateTimeField(label='Data da venda', format(%d/%m/%Y))
+    pub_date = forms.DateTimeField(label='Data da venda')
 
 
     class Meta:
