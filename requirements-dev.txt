@@ -3,7 +3,7 @@ config==0.5.0.post0
 decouple==0.0.7
 dj-database-url==0.5.0
 dj-static==0.0.6
-Django==3.0.7
+Django==3.1.9
 django-admin-interface==0.12.2
 django-colorfield==0.3.0
 django-flat-responsive==2.0
